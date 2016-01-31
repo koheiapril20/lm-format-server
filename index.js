@@ -9,7 +9,13 @@ app.get('/lm/news.json', (req, res) => {
   let feedParser = new FeedParser()
   let num = 5
   let items = []
-  request('https://english.kyodonews.jp/rss/news.xml').pipe(feedParser)
+  request({
+    method: 'GET',
+    uri: 'http://www.japantoday.com/feed',
+    headers: {
+      'User-Agent': 'nodejs'
+    }
+  }).pipe(feedParser)
   feedParser.on('readable', () => {
     if (num-- <= 0) {
       let data = {}
