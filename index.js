@@ -36,6 +36,27 @@ app.get('/lm/news.json', (req, res) => {
   })
 })
 
+app.get('/lm/splatoon.json', (req, res) => {
+  request({
+    method: 'GET',
+    uri: 'https://splatoon.ink/schedule.json',
+    transform: JSON.parse
+  }).then((schedule) => {
+    let data = { frames: [] }
+    data.frames[0] = {
+      index: 0,
+      text: 'R: ' + schedule.schedule[0].regular.maps.map((map) => { return map.nameEN }).join(' / '),
+      icon: 'a1278'
+    }
+    data.frames[1] = {
+      index: 0,
+      text: 'G: ' + schedule.schedule[0].ranked.maps.map((map) => { return map.nameEN }).join(' / '),
+      icon: 'a1278'
+    }
+    res.json(data)
+  })
+})
+
 app.listen(3000, () => {
   console.log('listening to port 3000')
 })
