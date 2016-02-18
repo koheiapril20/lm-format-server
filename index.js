@@ -46,12 +46,12 @@ app.get('/lm/splatoon.json', (req, res) => {
     data.frames[0] = {
       index: 0,
       text: 'R: ' + schedule.schedule[0].regular.maps.map((map) => { return map.nameEN }).join(' / '),
-      icon: 'a1278'
+      icon: 'a2567'
     }
     data.frames[1] = {
       index: 0,
       text: schedule.schedule[0].ranked.rulesEN + ': ' + schedule.schedule[0].ranked.maps.map((map) => { return map.nameEN }).join(' / '),
-      icon: 'a1278'
+      icon: 'a2567'
     }
     res.json(data)
   })
